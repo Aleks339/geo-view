@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="game">
+      <ol>
+        <!--
+          Now we provide each todo-item with the todo object
+          it's representing, so that its content can be dynamic.
+          We also need to provide each component with a "key",
+          which will be explained later.
+        -->
+        <game-card
+          v-for="card in cardList"
+          v-bind:gameprop="card"
+          v-bind:key="card.id">
+        </game-card>
+      </ol>
+    </div>
+    
+   
+    <script src="node_modules/vue/dist/vue.js"></script>  
+    <script>
+        Vue.component('game-card', {
+          props: ['gameprop'],
+          template: '<span><img :src = "gameprop.src_chinese" /><img :src = "gameprop.src_russian" /></span>'
+        })
+        
+        var game = new Vue({
+          el: '#game',
+          data: {
+            cardList: [
+              { id: 0, src_chinese: 'img/actions/actions_chinese.jpg', src_russian: 'img/actions/actions_russian.jpg', name: "Акция" },
+              { id: 2, src_chinese: 'img/actives/actives_chinese.jpg', src_russian: 'img/actives/actives_russian.jpg', name: "Актив"  },
+              { id: 4, src_chinese: 'img/arenda/arenda_chinese.jpg', src_russian: 'img/arenda/arenda_russian.jpg', name: "Аренда"  },
+              { id: 6, src_chinese: 'img/amortization/amortization_chinese.jpg', src_russian: 'img/amortization/amortization_russian.jpg', name: "Амортизация"  },
+              { id: 8, src_chinese: 'img/assignation/assignation_chinese.jpg', src_russian: 'img/assignation/assignation_russian.jpg', name: "Ассигновать"  },
+              { id: 10, src_chinese: 'img/bankruption/bankruption_chinese.jpg', src_russian: 'img/bankruption/bankruption_russian.jpg', name: "Банкротство"  },
+              { id: 12, src_chinese: 'img/barter/barter_chinese.jpg', src_russian: 'img/barter/barter_russian.jpg', name: "Бартер"  },
+              { id: 14, src_chinese: 'img/capital/capital_chinese.jpg', src_russian: 'img/capital/capital_russian.jpg', name: "Капитал"  },
+              { id: 16, src_chinese: 'img/credit/credit_chinese.jpg', src_russian: 'img/credit/credit_russian.jpg', name: "Кредит"  },
+              { id: 18, src_chinese: 'img/debet/debet_chinese.jpg', src_russian: 'img/debet/debet_russian.jpg', name: "Дебет"  },
+              { id: 20, src_chinese: 'img/debitor/debitor_chinese.jpg',src_russian: 'img/debitor/debitor_russian.jpg', name: "Дебитор"  },
+              { id: 22, src_chinese: 'img/dividend/dividend_chinese.jpg', src_russian: 'img/dividend/dividend_russian.jpg', name: "Дивиденд"  },
+              { id: 24, src_chinese: 'img/izderzhki/izderzhki_chinese.jpg', src_russian: 'img/izderzhki/izderzhki_russian.jpg', name: "Издержки"  },
+              { id: 26, src_chinese: 'img/liquid/liquid_chinese.jpg', src_russian: 'img/liquid/liquid_russian.jpg', name: "Ликвидность"  },
+              { id: 28, src_chinese: 'img/obligation/obligation_chinese.jpg', src_russian: 'img/obligation/obligation_russian.jpg', name: "Облигация"  },
+              { id: 30, src_chinese: 'img/passive/passive_chinese.jpg', src_russian: 'img/passive/passive_russian.jpg', name: "Пассив"  }, 
+              { id: 32, src_chinese: 'img/profit/profit_chinese.jpg', src_russian: 'img/profit/profit_russian.jpg', name: "Прибыль"  },
+              { id: 34, src_chinese: 'img/ubytki/ubytki_chinese.jpg', src_russian: 'img/ubytki/ubytki_russian.jpg', name: "Убытки"  },
+              { id: 36, src_chinese: 'img/vexel/vexel_chinese.jpg', src_russian: 'img/vexel/vexel_russian.jpg', name: "Вексель"  },
+              { id: 38, src_chinese: 'img/vnp/vnp_chinese.jpg', src_russian: 'img/vnp/vnp_russian.jpg', name: "Валовый национальный продукт (ВНП)"  },
+              { id: 40, src_chinese: 'img/vvp/vvp_chinese.jpg', src_russian: 'img/vvp/vvp_russian.jpg', name: "Валовый внутренний продукт (ВВП)"  },
+            ]
+          }
+        })
+    </script>
+</body>
+</html>
