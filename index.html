@@ -21,25 +21,30 @@
             <li>От П до У</li>
             <li>От Ф до Я</li>
         </ul>
-        <ol>
-            <game-card-chinese v-for="card in cardList" v-bind:gameprop="card" v-bind:key="card.id">
-            </game-card-chinese>
-        </ol>
-        <ol>
-            <game-card-russian v-for="card in cardList" v-bind:gameprop="card" v-bind:key="card.id">
-            </game-card-russian>
-        </ol>
+        
+        <div class="container">
+            <div class = "chinese">
+                <game-card-chinese v-for="card in cardList" v-bind:gameprop="card" v-bind:key="card.id">
+                </game-card-chinese>
+            </div>
+            <div class = "russian">
+                <game-card-russian v-for="card in cardList" v-bind:gameprop="card" v-bind:key="card.id">
+                </game-card-russian>
+            </div>
+        </div>
+        
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/v-tooltip/demo-src/src/main.js"></script>
     <script>
     Vue.component('game-card-chinese', {
         props: ['gameprop'],
-        template: '<span><img :src = "gameprop.src_chinese"  :v-my-tooltip.bottom-center="gameprop.name"/></span>'
+        template: '<span><img :src = "gameprop.src_chinese" :data-toggle="tooltip"  v-bind:title="gameprop.name"/></span>'
     })
 
     Vue.component('game-card-russian', {
         props: ['gameprop'],
-        template: '<span><img :src = "gameprop.src_russian"  :v-my-tooltip.bottom-center="gameprop.description"/></span>'
+        template: '<span><img :src = "gameprop.src_russian"  :data-toggle="tooltip"  v-bind:title="gameprop.description"/></span>'
     })
 
     var game = new Vue({
