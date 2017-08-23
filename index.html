@@ -1,84 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
-    
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
-
     <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>  
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 </head>
+
 <body>
     <div id="game">
-     <ul>
-          <li>От А до Д</li>
-          <li>От Е до И</li>
-          <li>От К до О</li>
-          <li>От П до У</li>
-          <li>От Ф до Я</li>
-      </ul>
-      <ol>
-        <game-card-chinese
-          v-for="card in cardList"
-          v-bind:gameprop="card"
-          v-bind:key="card.id">
-        </game-card-chinese>
-      </ol>
-       <ol>
-        <game-card-russian
-          v-for="card in cardList"
-          v-bind:gameprop="card"
-          v-bind:key="card.id">
-        </game-card-russian>
-      </ol>
+        <ul>
+            <li>От А до Д</li>
+            <li>От Е до И</li>
+            <li>От К до О</li>
+            <li>От П до У</li>
+            <li>От Ф до Я</li>
+        </ul>
+        <ol>
+            <game-card-chinese v-for="card in cardList" v-bind:gameprop="card" v-bind:key="card.id">
+            </game-card-chinese>
+        </ol>
+        <ol>
+            <game-card-russian v-for="card in cardList" v-bind:gameprop="card" v-bind:key="card.id">
+            </game-card-russian>
+        </ol>
     </div>
-    
-   
-    <script src="node_modules/vue/dist/vue.js"></script>  
+    <script src="node_modules/vue/dist/vue.js"></script>
     <script>
-        
-        Vue.component('game-card-chinese', {
-          props: ['gameprop'],
-          template: '<span><img :src = "gameprop.src_chinese"  :v-my-tooltip.bottom-center="gameprop.name"/></span>'
-        })
-        
-        Vue.component('game-card-russian', {
-          props: ['gameprop'],
-          template: '<span><img :src = "gameprop.src_russian"  :v-my-tooltip.bottom-center="gameprop.description"/></span>'
-        })
-        
-        var game = new Vue({
-          el: '#game',
-          data: {
-            cardList: [
-              { id: 0, src_chinese: 'img/actions/actions_chinese.jpg', src_russian: 'img/actions/actions_russian.jpg', name: "Акция", description: "Акция – ценная бумага, свидетельствующая о внесении средств в капитал акционерного общества и дающая право на получение части прибыли в виде дивидендов" },
-              { id: 1, src_chinese: 'img/actives/actives_chinese.jpg', src_russian: 'img/actives/actives_russian.jpg', name: "Актив", description: "Актив: часть бухгалтерского баланса (левая сторона), отражающая состав и стоимость имущества организации на определённую дату. Совокупность имущества, принадлежащего юридическому лицу или предпринимателю" },
-              { id: 2, src_chinese: 'img/arenda/arenda_chinese.jpg', src_russian: 'img/arenda/arenda_russian.jpg', name: "Аренда", description: "Аренда — форма имущественного договора, при которой собственность передаётся во временное владение и пользование (или только во временное пользование) арендатору за арендную плату" },
-              { id: 3, src_chinese: 'img/amortization/amortization_chinese.jpg', src_russian: 'img/amortization/amortization_russian.jpg', name: "Амортизация", description: "Амортизация — процесс переноса по частям стоимости основных средств и нематериальных активов по мере их физического или морального износа на стоимость производимой продукции (работ, услуг)" },
-              { id: 4, src_chinese: 'img/assignation/assignation_chinese.jpg', src_russian: 'img/assignation/assignation_russian.jpg', name: "Ассигновать", description: "Ассигновать - Назначить отпуск денег."   },
-              { id: 5, src_chinese: 'img/bankruption/bankruption_chinese.jpg', src_russian: 'img/bankruption/bankruption_russian.jpg', name: "Банкротство", description: "Банкротство — признанная уполномоченным государственным органом неспособность должника (гражданина, организации, или государства) удовлетворить в полном объёме требования кредиторов по денежным обязательствам и (или) исполнить обязанность по уплате обязательных государственных платежей" },
-              { id: 6, src_chinese: 'img/barter/barter_chinese.jpg', src_russian: 'img/barter/barter_russian.jpg', name: "Бартер", description: "Бартер –  вид гражданско-правового договора, при котором одна сторона берёт на себя обязательство передать другой стороне некоторое имущество против обязательства другой стороны передать первой имущество равной стоимости (с точки зрения сторон договора)" },
-              { id: 7, src_chinese: 'img/capital/capital_chinese.jpg', src_russian: 'img/capital/capital_russian.jpg', name: "Капитал", description: "Капитал — стоимость, используемая для получения прибавочной стоимости посредством производственной и экономической деятельности, основанной на добровольном обмене." },
-              { id: 8, src_chinese: 'img/credit/credit_chinese.jpg', src_russian: 'img/credit/credit_russian.jpg', name: "Кредит", description: "Кредит или кредитные отношения — общественные отношения, возникающие между субъектами экономических отношений по поводу движения стоимости." },
-              { id: 9, src_chinese: 'img/debitor/debitor_chinese.jpg',src_russian: 'img/debitor/debitor_russian.jpg', name: "Дебитор", description: "Дебитор — лицо, получившее продукцию или услугу, но еще не оплатившее их" },
-              { id: 10, src_chinese: 'img/dividend/dividend_chinese.jpg', src_russian: 'img/dividend/dividend_russian.jpg', name: "Дивиденд", description: "Дивиденд — часть прибыли акционерного общества или иного хозяйствующего субъекта, распределяемая между акционерами, участниками в соответствии с количеством и видом акций, долей, находящихся в их владении." },
-              { id: 11, src_chinese: 'img/izderzhki/izderzhki_chinese.jpg', src_russian: 'img/izderzhki/izderzhki_russian.jpg', name: "Издержки", description: "Издержки — затраты, связанные с производством товаров. В бухгалтерской и статистической отчетности отражаются в виде себестоимости. Включают в себя материальные затраты, расходы на оплату труда, проценты за кредиты " },
-              { id: 12, src_chinese: 'img/liquid/liquid_chinese.jpg', src_russian: 'img/liquid/liquid_russian.jpg', name: "Ликвидность", description: "Ликви́дность — экономический термин, обозначающий способность активов быть быстро проданными по цене, близкой к рыночной. Ликвидный — обращаемый в деньги" },
-              { id: 13, src_chinese: 'img/obligation/obligation_chinese.jpg', src_russian: 'img/obligation/obligation_russian.jpg', name: "Облигация", description: "Облигация — эмиссионная долговая ценная бумага, владелец которой имеет право получить от лица, её выпустившего (эмитента облигации), в оговорённый срок её номинальную стоимость деньгами или в виде иного имущественного эквивалента." },
-              { id: 14, src_chinese: 'img/passive/passive_chinese.jpg', src_russian: 'img/passive/passive_russian.jpg', name: "Пассив", description: "Пассив — противоположная активу часть бухгалтерского баланса, — совокупность всех обязательств (источников формирования средств) предприятия" }, 
-              { id: 15, src_chinese: 'img/profit/profit_chinese.jpg', src_russian: 'img/profit/profit_russian.jpg', name: "Прибыль", description: "Прибыль = Доходы − Затраты (в денежном выражении)." },
-              { id: 16, src_chinese: 'img/ubytki/ubytki_chinese.jpg', src_russian: 'img/ubytki/ubytki_russian.jpg', name: "Убыток", description: "Убытки - выраженные в денежной форме имущественные потери, возникшие у лица, и находящиеся в причинной связи с неправомерным действием или бездействием др. лица" },
-              { id: 17, src_chinese: 'img/vexel/vexel_chinese.jpg', src_russian: 'img/vexel/vexel_russian.jpg', name: "Вексель", description: "Вексель — ценная бумага, оформленная по строго установленной форме, удостоверяющая перетекание одного обязательства в другое обязательство и дающая право лицу, которому вексель передан на основании соответствующего договора, на получение от должника определённой в векселе суммы" },
-            ]
-          }
-        })
-      
-    </script>
-    
+    Vue.component('game-card-chinese', {
+        props: ['gameprop'],
+        template: '<span><img :src = "gameprop.src_chinese"  :v-my-tooltip.bottom-center="gameprop.name"/></span>'
+    })
 
+    Vue.component('game-card-russian', {
+        props: ['gameprop'],
+        template: '<span><img :src = "gameprop.src_russian"  :v-my-tooltip.bottom-center="gameprop.description"/></span>'
+    })
+
+    var game = new Vue({
+        el: '#game',
+        data: {
+            cardList: [
+                { id: 0, src_chinese: 'img/actions/actions_chinese.jpg', src_russian: 'img/actions/actions_russian.jpg', name: "Акция", description: "Акция – ценная бумага, свидетельствующая о внесении средств в капитал акционерного общества и дающая право на получение части прибыли в виде дивидендов" },
+                { id: 1, src_chinese: 'img/actives/actives_chinese.jpg', src_russian: 'img/actives/actives_russian.jpg', name: "Актив", description: "Актив: часть бухгалтерского баланса (левая сторона), отражающая состав и стоимость имущества организации на определённую дату. Совокупность имущества, принадлежащего юридическому лицу или предпринимателю" },
+                { id: 2, src_chinese: 'img/arenda/arenda_chinese.jpg', src_russian: 'img/arenda/arenda_russian.jpg', name: "Аренда", description: "Аренда — форма имущественного договора, при которой собственность передаётся во временное владение и пользование (или только во временное пользование) арендатору за арендную плату" },
+                { id: 3, src_chinese: 'img/amortization/amortization_chinese.jpg', src_russian: 'img/amortization/amortization_russian.jpg', name: "Амортизация", description: "Амортизация — процесс переноса по частям стоимости основных средств и нематериальных активов по мере их физического или морального износа на стоимость производимой продукции (работ, услуг)" },
+                { id: 4, src_chinese: 'img/assignation/assignation_chinese.jpg', src_russian: 'img/assignation/assignation_russian.jpg', name: "Ассигновать", description: "Ассигновать - Назначить отпуск денег." },
+                { id: 5, src_chinese: 'img/bankruption/bankruption_chinese.jpg', src_russian: 'img/bankruption/bankruption_russian.jpg', name: "Банкротство", description: "Банкротство — признанная уполномоченным государственным органом неспособность должника (гражданина, организации, или государства) удовлетворить в полном объёме требования кредиторов по денежным обязательствам и (или) исполнить обязанность по уплате обязательных государственных платежей" },
+                { id: 6, src_chinese: 'img/barter/barter_chinese.jpg', src_russian: 'img/barter/barter_russian.jpg', name: "Бартер", description: "Бартер –  вид гражданско-правового договора, при котором одна сторона берёт на себя обязательство передать другой стороне некоторое имущество против обязательства другой стороны передать первой имущество равной стоимости (с точки зрения сторон договора)" },
+                { id: 7, src_chinese: 'img/capital/capital_chinese.jpg', src_russian: 'img/capital/capital_russian.jpg', name: "Капитал", description: "Капитал — стоимость, используемая для получения прибавочной стоимости посредством производственной и экономической деятельности, основанной на добровольном обмене." },
+                { id: 8, src_chinese: 'img/credit/credit_chinese.jpg', src_russian: 'img/credit/credit_russian.jpg', name: "Кредит", description: "Кредит или кредитные отношения — общественные отношения, возникающие между субъектами экономических отношений по поводу движения стоимости." },
+                { id: 9, src_chinese: 'img/debitor/debitor_chinese.jpg', src_russian: 'img/debitor/debitor_russian.jpg', name: "Дебитор", description: "Дебитор — лицо, получившее продукцию или услугу, но еще не оплатившее их" },
+                { id: 10, src_chinese: 'img/dividend/dividend_chinese.jpg', src_russian: 'img/dividend/dividend_russian.jpg', name: "Дивиденд", description: "Дивиденд — часть прибыли акционерного общества или иного хозяйствующего субъекта, распределяемая между акционерами, участниками в соответствии с количеством и видом акций, долей, находящихся в их владении." },
+                { id: 11, src_chinese: 'img/izderzhki/izderzhki_chinese.jpg', src_russian: 'img/izderzhki/izderzhki_russian.jpg', name: "Издержки", description: "Издержки — затраты, связанные с производством товаров. В бухгалтерской и статистической отчетности отражаются в виде себестоимости. Включают в себя материальные затраты, расходы на оплату труда, проценты за кредиты " },
+                { id: 12, src_chinese: 'img/liquid/liquid_chinese.jpg', src_russian: 'img/liquid/liquid_russian.jpg', name: "Ликвидность", description: "Ликви́дность — экономический термин, обозначающий способность активов быть быстро проданными по цене, близкой к рыночной. Ликвидный — обращаемый в деньги" },
+                { id: 13, src_chinese: 'img/obligation/obligation_chinese.jpg', src_russian: 'img/obligation/obligation_russian.jpg', name: "Облигация", description: "Облигация — эмиссионная долговая ценная бумага, владелец которой имеет право получить от лица, её выпустившего (эмитента облигации), в оговорённый срок её номинальную стоимость деньгами или в виде иного имущественного эквивалента." },
+                { id: 14, src_chinese: 'img/passive/passive_chinese.jpg', src_russian: 'img/passive/passive_russian.jpg', name: "Пассив", description: "Пассив — противоположная активу часть бухгалтерского баланса, — совокупность всех обязательств (источников формирования средств) предприятия" },
+                { id: 15, src_chinese: 'img/profit/profit_chinese.jpg', src_russian: 'img/profit/profit_russian.jpg', name: "Прибыль", description: "Прибыль = Доходы − Затраты (в денежном выражении)." },
+                { id: 16, src_chinese: 'img/ubytki/ubytki_chinese.jpg', src_russian: 'img/ubytki/ubytki_russian.jpg', name: "Убыток", description: "Убытки - выраженные в денежной форме имущественные потери, возникшие у лица, и находящиеся в причинной связи с неправомерным действием или бездействием др. лица" },
+                { id: 17, src_chinese: 'img/vexel/vexel_chinese.jpg', src_russian: 'img/vexel/vexel_russian.jpg', name: "Вексель", description: "Вексель — ценная бумага, оформленная по строго установленной форме, удостоверяющая перетекание одного обязательства в другое обязательство и дающая право лицу, которому вексель передан на основании соответствующего договора, на получение от должника определённой в векселе суммы" },
+            ]
+        }
+    })
+    </script>
 </body>
+
 </html>
