@@ -22,7 +22,7 @@
             <li>От Ф до Я</li>
         </ul>
         
-        <div class="container">
+        <div class="container" v-on:click = "clickObject">
             <div class = "chinese">
                 <game-card-chinese v-for="card in shuffle(5)" v-bind:gameprop="card">
                 </game-card-chinese>
@@ -39,17 +39,19 @@
     <script>
     Vue.component('game-card-chinese', {
         props: ['gameprop'],
-        template: '<span><img :src = "gameprop.src_chinese" data-toggle="tooltip"  v-bind:title="gameprop.name"/></span>'
+        template: '<span><img :src = "gameprop.src_chinese" data-toggle="tooltip" :class = "chinese-card" :data-id = "gameprop.id" v-bind:title="gameprop.name"/></span>'
     })
 
     Vue.component('game-card-russian', {
         props: ['gameprop'],
-        template: '<span><img :src = "gameprop.src_russian"  data-toggle="tooltip"  v-bind:title="gameprop.description"/></span>'
+        template: '<span><img :src = "gameprop.src_russian"  data-toggle="tooltip" :class = "chinese-card" :data-id = "gameprop.id" v-bind:title="gameprop.description"/></span>'
     })
 
     var game = new Vue({
         el: '#game',
         data: {
+            chineseId: null,
+            russianId: null,
             splicedCardList:[],
             cardList: [
                 { id: 0, src_chinese: 'img/actions/actions_chinese.jpg', src_russian: 'img/actions/actions_russian.jpg', name: "Акция", description: "Акция – ценная бумага, свидетельствующая о внесении средств в капитал акционерного общества и дающая право на получение части прибыли в виде дивидендов" },
@@ -99,11 +101,22 @@
                 }
                 return cards;
              },
-            clickOnItem: function(){
-                var itemIndex  = Math.floor(Math.random() * this.cardList.length);
-                if(itemIndex.onclick){
-                    alert(cardList.id);
-                }
+            clickObject: function(event){
+                  // event - событие, которое произошло (клик мышки)
+                  // event.target - html-объект связанный с событием 
+                  // $(event.target) - jquery обёртка вокруг этого html-объекта
+                  // $(event.target).data("id") - узнаём его атрибут data-id
+                  // hasClass(className)
+                  console.log($(event.target).data("id"));
+                  if ($(event.target).hasClass("chinese-card")) {
+                    this.chineseId = $(event.target).data("id");
+                  }
+                  if ($(event.target).hasClass("russian-card")) {
+                    this.russianId = $(event.target).data("id");
+                  }
+                  if (this.chineseId === this.russianId){
+                    alert ("Hello, World");
+                  }
             },
         },
     })
