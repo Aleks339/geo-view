@@ -22,29 +22,52 @@
             <li>От Ф до Я</li>
         </ul>
         
-        <div class="container" v-on:click = "clickObject">
+        <div class="container" v-on:click="clickObject">
             <div class = "chinese">
-                <game-card-chinese v-for="card in shuffle(5)" v-bind:gameprop="card">
+                <game-card-chinese v-for="card in shuffle(5)" v-bind:gameprop="card" :key="card.id">
                 </game-card-chinese>
             </div>
             <div class = "russian">
-                <game-card-russian v-for="card in shuffle(5)" v-bind:gameprop="card">
+                <game-card-russian v-for="card in shuffle(5)" v-bind:gameprop="card" :key="card.id">
                 </game-card-russian>
             </div>
         </div>
         
     </div>
+
+    <template id="chinese-card-template">
+        <span>
+            <img :src="gameprop.src_chinese"
+                data-toggle="tooltip"
+                class="chinese-card"
+                :data-id="gameprop.id"
+                v-bind:title="gameprop.name"
+            />
+        </span>
+    </template>
+    <template id="russian-card-template">
+        <span>
+            <img :src="gameprop.src_russian"
+                data-toggle="tooltip"
+                class="russian-card"
+                :data-id="gameprop.id"
+                v-bind:title="gameprop.name"
+            />
+        </span>
+    </template>
+
+
     <script src="node_modules/vue/dist/vue.js"></script>
 
     <script>
     Vue.component('game-card-chinese', {
         props: ['gameprop'],
-        template: '<span><img :src = "gameprop.src_chinese" data-toggle="tooltip" class = "chinese-card" :data-id = "gameprop.id" v-bind:title="gameprop.name"/></span>'
+        template: '#chinese-card-template'
     })
 
     Vue.component('game-card-russian', {
         props: ['gameprop'],
-        template: '<span><img :src = "gameprop.src_russian"  data-toggle="tooltip" class = "russian-card" :data-id = "gameprop.id"/></span>'
+        template: '#russian-card-template'
     })
 
     var game = new Vue({
