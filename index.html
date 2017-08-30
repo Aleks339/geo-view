@@ -34,7 +34,12 @@
                 <game-card-russian v-for="card in shuffle(5)" v-bind:gameprop="card" :key="card.id">
                 </game-card-russian>
             </div>
+            <div class = "table">
+                <scores class="table" v-for="(word, index) in words" v-bind:gameprop="word" :key="word.id"></scores>
+            </div>
         </div>
+        
+        
         
     </div>
 
@@ -60,7 +65,6 @@
         </span>
     </template>
 
-
     <script src="node_modules/vue/dist/vue.js"></script>
 
     <script>
@@ -71,7 +75,7 @@
             choose: function(){
                 this.$root.chineseId = this.gameprop.id;
                 if (this.$root.chineseId == this.$root.russianId){
-                    alert(this.gameprop.id);
+                    alert("Congratulation! You have 1 point!");
                     this.$root.points++;
                     localStorage.setItem("points", this.$root.points);
                     if(this.$root.answers[this.gameprop.name]){
@@ -92,7 +96,7 @@
             choose: function(){
                 this.$root.russianId = this.gameprop.id;
                 if (this.$root.chineseId == this.$root.russianId){
-                    alert(this.gameprop.id);
+                    alert("Congratulation! You have 1 point!");
                     this.$root.points++;
                     localStorage.setItem("points", this.$root.points);
                     if(this.$root.answers[this.gameprop.name]){
@@ -105,6 +109,7 @@
             }
         }
     })
+    
 
     var game = new Vue({
         el: '#game',
@@ -113,6 +118,8 @@
             russianId: null,
             answers: JSON.parse(localStorage.getItem("answers")) || {},
             points: parseInt(localStorage.getItem("points")) || 0,
+            quantityOfRightAnswers: 0,
+            wordName: [],
             splicedCardList:[],
             cardList: [
                 { id: 0, src_chinese: 'img/actions/actions_chinese.jpg', src_russian: 'img/actions/actions_russian.jpg', name: "Акция", description: "Акция – ценная бумага, свидетельствующая о внесении средств в капитал акционерного общества и дающая право на получение части прибыли в виде дивидендов" },
